@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'funtregular';
+  src: url('./fonts/PlaypenSans-Medium.ttf') format('woff2'),
+}
+div{
+  font-family: 'funtregular';
+}
