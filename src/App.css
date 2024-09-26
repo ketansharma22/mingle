@@ -5,3 +5,7 @@
 div{
   font-family: 'funtregular';
 }
+body{
+  scroll-behavior: smooth;
+  overflow: hidden;
+}
