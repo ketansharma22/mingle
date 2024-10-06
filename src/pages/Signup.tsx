@@ -30,20 +30,24 @@ const handleSubmit=(e:any)=>{
     navigate('/dashboard')
 }
 
+const handleChange=(e:any)=>{
+    const {name,value}=e.target;
+    setData((prevdata)=>({...prevdata,[name]:value}))
+}
 return (
 <div id='main' className='w-screen h-screen flex justify-center items-center  bg-neutral-900 flex-col'>
     <img className='w-60' src={logo} />
     <form id='main' onSubmit={handleSubmit} className=' border-solid border-2 border-gray flex flex-col justify-center items-center bg-blue-100 w-1/3 h-3/5 rounded-xl p-4 text-black gap-8 '>
         <div className='w-full flex-col flex gap-1 justify-center '>
           <label>Name</label>
-          <input type='text' required placeholder='Name' className='p-1 rounded-lg text-black'/>
+          <input onChange={handleChange} name='name' value={data.name} type='text' required placeholder='Name' className='p-1 rounded-lg text-black'/>
         </div>
         <div className='w-full flex-col flex gap-1 justify-center '>
         <label>Email</label>
-        <input required type='email' placeholder='Email' className='p-1 rounded-lg text-black'/>
+        <input onChange={handleChange} name='email' value={data.email} required type='email' placeholder='Email' className='p-1 rounded-lg text-black'/>
         </div>
         <div className=' w-full flex-col flex gap-2 justify-center '><label>Password</label>
-        <input required type={showw? `text`:`password`} placeholder='Password' className=' rounded-lg p-1 text-black'/>
+        <input onChange={handleChange} name='password' value={data.password} required type={showw? `text`:`password`} placeholder='Password' className=' rounded-lg p-1 text-black'/>
         <button onClick={handleShow} className='text-xs flex justify-end items-center pr-2'>{showw ? 'hide' :'show' }</button>
         </div>
         <div className='flex justify-center items-center gap-20'>
