@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbaar from '../components/Navbaar'
 import {gsap} from 'gsap';
 import { useEffect,useRef,useLayoutEffect } from 'react';
@@ -55,9 +55,11 @@ const navigate=useNavigate()
         </div>
         <div className='w-1/3 h-full flex flex-col mr-6 justify-center items-center'>
         <h2 id='q'  className='bg-clip-text text-transparent bg-gradient-to-r from-green-100 to-violet-900 text-[30px] '>Are you tired of the same old social media routine? Want to break free from the constraints of traditional online interactions? <span className='text-yellow-700'>Mingle</span> is here to shake things up! Our platform offers a unique opportunity to connect with strangers from diverse backgrounds and interests</h2>
+        <Link style={{background:"white",color:"black"}} to='/dashboard'>dashboard</Link>
         <button id='q' onClick={handleStart} className='w-max p-2 bg-white rounded-lg text-violet-700 mt-3 hover:text-green-700 transition-all ' >Get Started</button>
         </div>
        </div>
+       
     </div>
   ) 
 }
