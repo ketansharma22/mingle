@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Socket, io } from "socket.io-client";
 
-const URL = "http://localhost:5000";
+const URL = "http://localhost:5001";
 
 export const Room = ({
     name,
@@ -26,6 +26,12 @@ export const Room = ({
 
     useEffect(() => {
         const socket = io(URL);
+        console.log(URL);
+
+        ////to check the error(if exists)
+        // socket.on("connect_error", (err) => {
+        //     console.log(`connect_error due to ${err.message}`);
+        //   });
         socket.on('send-offer', async ({roomId}) => {
             console.log("sending offer");
             setLobby(false);
@@ -145,7 +151,7 @@ export const Room = ({
                 //     remoteVideoRef.current.srcObject.addTrack(track)
                 // }
                 // //@ts-ignore
-            }, 5000)
+            }, 2000)
         });
 
         socket.on("answer", ({roomId, sdp: remoteSdp}) => {
@@ -199,10 +205,14 @@ export const Room = ({
         }
     }, [localVideoRef])
 
-    return <div>
-        Hi {name}
-        <video autoPlay width={400} height={400} ref={localVideoRef} />
-        {lobby ? "Waiting to connect you to someone" : null}
-        <video autoPlay width={400} height={400} ref={remoteVideoRef} />
+    return (
+    <div className=" flex  ">
+        <div className="flex-col flex w-500px gap-4 p-2 pt-3">
+                <video autoPlay width={450} height={450} ref={localVideoRef} />
+                {lobby ? "Waiting to connect you to someone" : null}
+                <video autoPlay width={450} height={450} ref={remoteVideoRef} />
+        </div>
+        <div className="p-2 pt-3 flex "> </div>
     </div>
+    )
 }

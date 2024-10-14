@@ -36,16 +36,26 @@ export const Dashboard = () => {
 
     if (!joined) {
             
-    return <div>
-            <video autoPlay ref={videoRef}></video>
-            <input type="text" onChange={(e) => {
+    return( 
+        
+        <div style={{fontFamily:"sf"}} className="flex flex-col items-center gap-10 justify-center" > 
+            <video className=" h-[50%] rounded-2xl" autoPlay ref={videoRef}></video>
+            <div className="flex gap-2 h-[50%]">
+            <input className="bg-black text-white p-2 rounded-lg font-bold" placeholder="name" type="text" onChange={(e) => {
                 setName(e.target.value);
             }}>
             </input>
-            <button onClick={() => {
+            <button className="p-2 font-bold" onClick={() => {
                 setJoined(true);
             }}>Join</button>
+            </div>
+            <h1 className="text-[30px]">This is a Check Screen, You can check you hair and face before start talking to strangers</h1>
+
+            
+
+            
         </div>
+    )
     }
 
     return <Room name={name} localAudioTrack={localAudioTrack} localVideoTrack={localVideoTrack} />

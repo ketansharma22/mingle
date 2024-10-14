@@ -1,67 +1,79 @@
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
 import Navbaar from '../components/Navbaar'
-import {gsap} from 'gsap';
-import { useEffect,useRef,useLayoutEffect } from 'react';
+import { Link } from 'react-router-dom'
+import person from './person.png'
+import warning from './warning.jpg'
+import uandr from './uandr.jpg'
+import cam from  './cam.webp'
+import samay from './samay.jpg'
+import ajeeb from './ajeeb.jpeg'
+import nathu from './nathu.jpg'
+ import nawaj from  './nawaj.jpeg'
+ import kalo from './kalo.jpeg'
+import unkil from './unkil.jpeg'
+
 const Home = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  const colors = [ "black", "#557", "#000"];
-  const containerRef = useRef(null);
+  useEffect(() => {
+    const handleMouseMove = (event:any) => {
+      setMousePosition({
+        x: event.clientX,
+        y: event.clientY,
+      });
+    };
 
-
-
-  useLayoutEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: true,
-      },
-    });
-
-    colors.forEach((color, index) => {
-      tl.to(containerRef.current, {
-        backgroundColor: color,
-        duration: 1,
-        ease: "power2.inOut",
-      }, index * 0.5);
-    });
+    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      tl.kill();
+      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
-const navigate=useNavigate()
-  const handleStart=(e:any)=>{
-    e.preventDefault();
-    navigate('/login');
-  }
-  useEffect(()=>{
-    gsap.fromTo('#p',{duration:.8,x:-100,opacity:0,stagger:.2},
-      {duration:.8,x:0,opacity:1,}
-    )
-    gsap.fromTo('#q',{duration:.8,y:100,opacity:0,stagger:.2},
-      {duration:.8,y:0,opacity:1,}
-    )
-  },[])
+
+  const calculateTransform = (x:any, y:any) => {
+    const moveX = (x / window.innerWidth - 0.5) * 30; 
+    const moveY = (y / window.innerHeight - 0.5) * 30;
+    return `translate(${moveX}px, ${moveY}px)`;
+  };
+
 
   return (
-    <div className='h-max w-screen'>
-      <Navbaar />
-      <div ref={containerRef}  className='w-screen h-[650px] bg-black text-white p-1 flex overflow-x-hidden  '>
-        <div className='w-2/3 h-full text-black flex items-center justify-center '>
-            <h1 id='p' className='text-[220px]  bg-clip-text text-transparent bg-gradient-to-r from-green-100 to-violet-900'>MINGLE</h1>
+    <div id='home' className='w-screen overflow-hidden h-screen m-0 p-0'>
+      <Navbaar/>
+      <div className='h-[80vh] w-screen gap-8 overflow-hidden text-black flex flex-col items-center justify-center p-2 '>
+
+        <img src={unkil} className='w-20 rounded-full' style={{position:"absolute", transition:"transform .1s ease-out", padding:"10px", top:150 ,transform: calculateTransform(mousePosition.x, mousePosition.y)}} />
+        <img src={samay} className='w-20 rounded-full' style={{position:"absolute", transition:"transform .1s ease-out", padding:"10px", top:250, left:500,rotate:"50deg" ,transform: calculateTransform(mousePosition.x, mousePosition.y)}} />
+        <img src={ajeeb} className='w-20 rounded-full' style={{position:"absolute", transition:"transform .1s ease-out", padding:"10px" ,top:400,right:350,rotate:"-40deg" ,transform: calculateTransform(mousePosition.x, mousePosition.y)}} />
+        <img src={nathu} className='w-20 rounded-full' style={{position:"absolute", transition:"transform .1s ease-out", padding:"10px",top:380 ,transform: calculateTransform(mousePosition.x, mousePosition.y)}} />
+        <img src={nawaj} className='w-20 rounded-full' style={{position:"absolute", transition:"transform .1s ease-out", padding:"10px",right:450,bottom:350,rotate:"-30deg" ,transform: calculateTransform(mousePosition.x, mousePosition.y)}} />
+        <img src={kalo} className='w-20 rounded-full' style={{position:"absolute", transition:"transform .1s ease-out", padding:"10px",top:380,left:400,rotate:"10deg" ,transform: calculateTransform(mousePosition.x, mousePosition.y)}} />
+
+
+        <h1 className=' flex flex-col items-center justify-center   text-[70px]'>TALK TO <span style={{marginTop:"-30px"}}> STRANGERS</span></h1>
+
+        <h2 style={{fontFamily:"sf"}}>Use Mingle to get paired randomly with another person online  to talk <span>one-on-one</span> </h2>
+
+        <Link to='/dashboard' style={{fontFamily:"redis"}} className='text-[30px] bg-black text-white p-2 rounded-3xl'>Let's Mingle</Link>
+
+        <div id='info' className='flex w-full ' style={{fontFamily:"sf"}}>
+        <div className='w-[25%] gap-4 h-[50px] p-2 flex items-center justify-center'>
+          <img src={person} className='w-8' />
+          <p>Chat anonymously</p></div>
+        <div className='w-[25%] gap-4 h-[50px] p-2 flex items-center justify-center'>
+          <img src={warning} className='w-8' />
+          <p>Must be 16+</p></div>
+        <div className='w-[25%] gap-4 h-[50px] p-2 flex items-center justify-center'>
+          <img src={uandr} className='w-8' /> 
+          <p>Use and repeat</p></div>
+        <div className='w-[25%] gap-4 h-[50px] p-2 flex items-center justify-center'>
+          <img src={cam}  className='w-8'/>
+          <p>Videos are not monitored yet</p></div>
         </div>
-        <div className='w-1/3 h-full flex flex-col mr-6 justify-center items-center'>
-        <h2 id='q'  className='bg-clip-text text-transparent bg-gradient-to-r from-green-100 to-violet-900 text-[30px] '>Are you tired of the same old social media routine? Want to break free from the constraints of traditional online interactions? <span className='text-yellow-700'>Mingle</span> is here to shake things up! Our platform offers a unique opportunity to connect with strangers from diverse backgrounds and interests</h2>
-        <Link style={{background:"white",color:"black"}} to='/dashboard'>dashboard</Link>
-        <button id='q' onClick={handleStart} className='w-max p-2 bg-white rounded-lg text-violet-700 mt-3 hover:text-green-700 transition-all ' >Get Started</button>
-        </div>
-       </div>
-       
+      </div>
     </div>
-  ) 
+  )
 }
 
 export default Home

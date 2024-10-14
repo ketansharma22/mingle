@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'funtregular';
-  src: url('./fonts/PlaypenSans-Medium.ttf') format('woff2'),
+  font-family: 'rookie';
+  src: url('./fonts/RubikDoodleShadow-Regular.ttf') format('ttf');
 }
-div{
-  font-family: 'funtregular';
-}
+
 body{
   scroll-behavior: smooth;
-  overflow: hidden;
+  font-family: rookie;
+  overflow-x: hidden;
+  background-color:beige;
 }

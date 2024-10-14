@@ -1,4 +1,22 @@
-@font-face {
+/* @font-face {
     font-family: 'funtregular';
     src: url('./fonts/PlaywriteDEGrund-Regular.ttf') format('ttf'),
+} */
+@font-face {
+    font-family: "rookie";
+    src: url('./fonts/RubikDoodleShadow-Regular.ttf');
+}
+@font-face {
+    font-family: 'custom';
+    src: url('./fonts/Rokkitt-Black.ttf');
+}
+
+@font-face {
+    font-family: "redis";
+    src: url('./fonts/MINUS___.TTF');
+}
+
+@font-face {
+    font-family: "sf";
+    src: url('./fonts/SFPRODISPLAYREGULAR.OTF');
 }
