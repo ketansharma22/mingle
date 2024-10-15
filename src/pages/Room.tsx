@@ -32,6 +32,7 @@ export const Room = ({
         // socket.on("connect_error", (err) => {
         //     console.log(`connect_error due to ${err.message}`);
         //   });
+        
         socket.on('send-offer', async ({roomId}) => {
             console.log("sending offer");
             setLobby(false);
@@ -212,7 +213,7 @@ export const Room = ({
                 {lobby ? "Waiting to connect you to someone" : null}
                 <video autoPlay width={450} height={450} ref={remoteVideoRef} />
         </div>
-        <div className="p-2 pt-3 flex "> </div>
+        <div className="p-2 pt-3 flex "></div>
     </div>
     )
 }
