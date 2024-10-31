@@ -27,11 +27,11 @@ export const Room = ({
     useEffect(() => {
         const socket = io(URL);
 
-        ////to check the error(if exists)
+        // //to check the error(if exists)
         // socket.on("connect_error", (err) => {
         //     console.log(`connect_error due to ${err.message}`);
         //   });
-        
+        console.log(localVideoTrack)
         socket.on('send-offer', async ({roomId}) => {
             console.log("sending offer");
             setLobby(false);
