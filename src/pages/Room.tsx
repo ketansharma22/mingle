@@ -26,7 +26,6 @@ export const Room = ({
 
     useEffect(() => {
         const socket = io(URL);
-        console.log(URL);
 
         ////to check the error(if exists)
         // socket.on("connect_error", (err) => {
